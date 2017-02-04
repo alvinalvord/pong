@@ -192,13 +192,15 @@ function checkCollisionBox () {
 					}
 				}
 			else if (circle.y >= box.y + box.height ||
-				circle.y <= box.y) {
-					freeTranslation.v = !freeTranslation.v;
-					
-					if (circle.y >= box.y + box.height)
+				circle.y <= box.y) {					
+					if (circle.y >= box.y + box.height) {
+						freeTranslation.v = true;
 						circle.y = box.y + box.height + circle.r + barspeed;
-					else
+					}
+					else {
+						freeTranslation.v = false;
 						circle.y = box.y - circle.r - barspeed;
+					}
 				}
 			
 			increaseDifficulty ();
@@ -210,21 +212,25 @@ function checkCollisionBox () {
 		circle.y - circle.r <= box2.y + box2.height) {
 			if (circle.x >= box2.x + box2.width ||
 				circle.x <= box2.x) {
-					if (circle.x >= box2.x + box2.width)
+					if (circle.x >= box2.x + box2.width) {
+						freeTranslation.h = true;
 						circle.x = box2.x + box2.width + circle.r + barspeed;
-					else
+					}
+					else {
+						freeTranslation.h = false;
 						circle.x = box2.x - circle.r - barspeed;
-					
-					freeTranslation.h = !freeTranslation.h;
+					}
 				}
 			else if (circle.y >= box2.y + box2.height ||
 				circle.y <= box2.y) {
-					if (circle.y >= box2.y + box2.height)
+					if (circle.y >= box2.y + box2.height) {
+						freeTranslation.v = true;
 						circle.y = box2.y + box2.height + circle.r + barspeed;
-					else
+					}
+					else {
+						freeTranslation.v = false;
 						circle.y = box2.y - circle.r - barspeed;
-					
-					freeTranslation.v = !freeTranslation.v;
+					}
 				}
 			
 			increaseDifficulty ();
