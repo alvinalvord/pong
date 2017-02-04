@@ -43,6 +43,18 @@ var player1 = 0;
 var player2 = 0;
 var barspeed = 10;
 var invincible = false;
+var pauseColor = "#FFFFFF";
+var paused = false;
+var frozen = {
+	speed: 0,
+	cx: 0,
+	cy: 0,
+	dx: 0,
+	dy: 0,
+	d2x: 0,
+	d2y: 0,
+	barspeed: 0
+};
 
 window.onload = function () {
 	document.onkeydown = keyDown;
@@ -69,9 +81,17 @@ function boom () {
 
 function loop () {
 	drawBG (color);
-	updateBox ();
-	updateBox2 ();
-	updateCircle ();
+	if (!paused) {
+		updateBox ();
+		updateBox2 ();
+		updateCircle ();
+	}
+	else {
+		drawPaused ();
+		drawBox ();
+		drawBox2 ();
+		drawCircle ();
+	}
 	mainloop = setTimeout (loop, 1);
 }
 
@@ -128,7 +148,48 @@ function keyUp (e) {
 		case 39:
 			d2.x = 0;
 			break;
+			
+		case 80:
+			paused = !paused;
+			if (paused) {
+				pauseColor = randomColor ();
+				freeze ();
+			}
+			else
+				unfreeze ();
+			break;
 	}
+}
+
+function freeze () {
+	frozen.speed = speed;
+	frozen.cx = c.x;
+	frozen.cy = c.y;
+	frozen.dx = d.x;
+	frozen.dy = d.y;
+	frozen.d2x = d2.x;
+	frozen.d2y = d2.y;
+	frozen.barspeed = barspeed;
+	
+	speed = 0;
+	c.x = 0;
+	c.y = 0;
+	d.x = 0;
+	d.y = 0;
+	d2.x = 0;
+	d2.y = 0;
+	barspeed = 0;
+}
+
+function unfreeze () {
+	speed = frozen.speed;
+	c.x = frozen.cx;
+	c.y = frozen.cy;
+	d.x = frozen.dx;
+	d.y = frozen.dy;
+	d2.x = frozen.d2x;
+	d2.y = frozen.d2y;
+	barspeed = frozen.barspeed;
 }
 
 function freeMove () {
@@ -316,6 +377,14 @@ function updateBox2 () {
 		box2.y += d2.y;
 	
 	drawBox2 ();
+}
+
+function drawPaused () {
+	ctx.beginPath ();
+	ctx.font = "100px Comic Sans MS";
+	ctx.fillStyle = pauseColor;
+	var temp = "GAME PAUSED";
+	ctx.fillText (temp, window.innerWidth / 2 - ctx.measureText (temp).width / 2, window.innerHeight / 2);
 }
 
 function drawCircle () {

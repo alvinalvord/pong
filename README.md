@@ -11,5 +11,6 @@
 # use WASD for player 1                            #
 # use UP, DOWN, LEFT, RIGHT                 #
 #    arrows for player 2                               #
+# press P to pause/resume the game           #
 #                                                                  #
 #------------    END OF FILE    -------------#
