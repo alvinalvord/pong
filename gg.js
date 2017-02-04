@@ -52,8 +52,8 @@ window.onload = function () {
 }
 
 function opening () {
-	//var a = new Audio ('Ring01.wav');
-	var a = new Audio ('flourish.mp3');
+	var a = new Audio ('Ring01.wav');
+	//var a = new Audio ('flourish.mp3');
 	a.play ();
 }
 
