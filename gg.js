@@ -182,12 +182,14 @@ function checkCollisionBox () {
 		circle.y - circle.r <= box.y + box.height) {
 			if (circle.x >= box.x + box.width ||
 				circle.x <= box.x) {
-					freeTranslation.h = !freeTranslation.h;
-					
-					if (circle.x >= box.x + box.width)
+					if (circle.x >= box.x + box.width) {
+						freeTranslation.h = true;
 						circle.x = box.x + box.width + circle.r + barspeed;
-					else
+					}
+					else {
+						freeTranslation.h = false;
 						circle.x = box.x - circle.r - barspeed;
+					}
 				}
 			else if (circle.y >= box.y + box.height ||
 				circle.y <= box.y) {
