@@ -41,7 +41,7 @@ var freeloop;
 var color = "#000000";
 var player1 = 0;
 var player2 = 0;
-var barspeed = 8;
+var barspeed = 10;
 var invincible = false;
 
 window.onload = function () {
