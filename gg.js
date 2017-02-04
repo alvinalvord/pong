@@ -35,13 +35,13 @@ var freeTranslation = {
 	v: true,
 	h: true
 }
-var speed  = 1;
+var speed  = 0.25;
 var mainloop;
 var freeloop;
 var color = "#000000";
 var player1 = 0;
 var player2 = 0;
-var barspeed = 20;
+var barspeed = 8;
 var invincible = false;
 
 window.onload = function () {
@@ -72,7 +72,7 @@ function loop () {
 	updateBox ();
 	updateBox2 ();
 	updateCircle ();
-	mainloop = setTimeout (loop, 16);
+	mainloop = setTimeout (loop, 1);
 }
 
 function keyDown (e) {
@@ -167,11 +167,11 @@ function gameReset () {
 function increaseDifficulty () {
 	boop ();
 	color = randomColor ();
-	if (speed < 25)
-		speed += 0.5;
+	if (speed < 15)
+		speed += 0.125;
 	if (box.height > 8 * circle.r) {
-		box.height -= 15;
-		box2.height -= 15;
+		box.height -= 8;
+		box2.height -= 8;
 	}
 }
 
@@ -242,7 +242,7 @@ function updateCircle () {
 		player2 ++;
 		gameReset ();
 		invincible = true;
-		setTimeout (invincibility, 4000);
+		setTimeout (invincibility, 3000);
 	}
 	else if (circle.x + c.x > canvas.width - circle.r) {
 		freeTranslation.h = false;
@@ -250,7 +250,7 @@ function updateCircle () {
 		player1 ++;
 		gameReset ();
 		invincible = true;
-		setTimeout (invincibility, 4000);
+		setTimeout (invincibility, 3000);
 	}
 	else
 		circle.x += c.x;
