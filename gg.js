@@ -170,7 +170,9 @@ function increaseDifficulty () {
 	if (speed < 15)
 		speed += 0.125;
 	if (box.height > 8 * circle.r) {
+		box.y += 4;
 		box.height -= 8;
+		box2.y += 4;
 		box2.height -= 8;
 	}
 }
