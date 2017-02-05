@@ -35,7 +35,7 @@ var freeTranslation = {
 	v: true,
 	h: true
 }
-var speed  = 0.25;
+var speed  = 1;
 var mainloop;
 var freeloop;
 var color = "#000000";
